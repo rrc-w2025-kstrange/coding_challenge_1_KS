@@ -1,0 +1,38 @@
+
+interface Player {
+  id: number;
+  name: string;
+  wins: number;
+  losses: number;
+  totalScore: number;
+}
+
+const players: Player[] = [
+  { id: 1, name: "ShadowStrike", wins: 15, losses: 5, totalScore: 28500 },
+  { id: 2, name: "NoobMaster", wins: 3, losses: 12, totalScore: 4200 },
+  { id: 3, name: "ProGamer99", wins: 0, losses: 0, totalScore: 0 }
+];
+
+const getPlayerById = (id: number): Player | undefined => {
+  return players.find(player => player.id === id);
+};
+
+const getAllPlayers = (): Player[] => {
+  return players;
+};
+
+const ratingCalculation = (player: Player): number => {
+    const totalGames = player.wins + player.losses;
+
+    if (totalGames === 0)
+        return 0;
+
+    const rating = (player.wins / totalGames) * 100 + (player.totalScore / totalGames);
+    return Number(rating.toFixed(2));
+};
+
+export default {
+  getAllPlayers,
+  getPlayerById,
+  ratingCalculation
+};
